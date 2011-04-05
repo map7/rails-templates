@@ -63,7 +63,7 @@ git :commit => "-m 'initial commit'"
 
 # Add home page
 generate :controller, "home index"
-route "map.root :controller => 'home'"
+route "root :to => 'home#index'"
 git :rm => "public/index.html"
 
 git :add => "."
