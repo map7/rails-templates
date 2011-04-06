@@ -15,4 +15,7 @@ http://railscasts.com/episodes/148-app-templates-in-rails-2-3
 http://thelastpixel.net/2010/11/21/rails-3-application-template/
 
 Use this template like so
-rails new <project name> -m https://github.com/map7/rails-templates/raw/master/base.rb
+rails new <project name> -d postgresql -m https://github.com/map7/rails-templates/raw/master/base.rb
+
+TODO
+- setup sass
