@@ -17,5 +17,3 @@ http://thelastpixel.net/2010/11/21/rails-3-application-template/
 Use this template like so
 rails new <project name> -d postgresql -m https://github.com/map7/rails-templates/raw/master/base.rb
 
-TODO
-- setup sass

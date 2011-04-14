@@ -6,9 +6,8 @@ gem 'haml-rails'
 gem 'hamlify'
 gem 'sass'
 gem 'will_paginate', '~> 3.0.pre2'
-
-# Controller
-
+gem 'nifty-generators'
+gem 'simple-navigation'
 
 # Debugger
 gem 'ruby-debug19'
@@ -53,7 +52,17 @@ gem 'dynamic_form',:git => 'git://github.com/rails/dynamic_form.git'
 
 run 'bundle install'
 
-# Generate stuff
+# Generate Nice layout using nifty-generator and convert sass to scss.
+generate 'nifty:layout --haml'
+remove_file 'app/views/layouts/application.html.erb'
+generate 'nifty:config'
+run 'sass-convert -F sass -T scss public/stylesheets/sass/application.sass public/stylesheets/sass/application.scss'
+remove_file 'public/stylesheets/sass/application.sass'
+
+# Generate simple navigation
+generate 'navigation_config'
+
+# Generate testing tools
 generate 'rspec:install'
 generate 'cucumber:install'
 generate 'pickle'
@@ -71,7 +80,10 @@ inject_into_file 'config/application.rb', :after => "config.filter_parameters +=
     end
   eos
 end
-#generate 'jquery:install'
+
+# jQuery install
+remove_file 'public/javascripts/rails.js'
+generate 'jquery:install'
 
 # Create new git repo.
 git :init
@@ -93,6 +105,12 @@ git :rm => "public/index.html"
 git :add => "."
 git :commit => "-m 'adding home controller'"
 
+
+if yes?("Would you like me to run db create/migrate now?")
+  rake 'db:create'
+  rake 'db:migrate'
+  rake 'db:test:prepare'
+end
 
 say <<-eos
   -------------------------------------------
