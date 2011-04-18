@@ -102,15 +102,14 @@ generate :controller, "home index"
 route "root :to => 'home#index'"
 git :rm => "public/index.html"
 
-git :add => "."
-git :commit => "-m 'adding home controller'"
-
-
 if yes?("Would you like me to run db create/migrate now?")
   rake 'db:create'
   rake 'db:migrate'
   rake 'db:test:prepare'
 end
+
+git :add => "."
+git :commit => "-a -m 'adding home controller'"
 
 say <<-eos
   -------------------------------------------

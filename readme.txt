@@ -17,3 +17,9 @@ http://thelastpixel.net/2010/11/21/rails-3-application-template/
 Use this template like so
 rails new <project name> -d postgresql -m https://github.com/map7/rails-templates/raw/master/base.rb
 
+TODO
+- remark out all lines in navigation.rb
+- Add a line to navigation for home page (root_path)
+- Add some nav lines to login/logout
+- Configure style of nav like my AAD website
+- add '= render_navigation :renderer => :links' to application.html.haml
