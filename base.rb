@@ -48,6 +48,7 @@ end
 
 # Put in gems which require git repos.
 gem 'inherited_resources', :git => 'https://github.com/josevalim/inherited_resources.git'
+gem 'has_scope' # used in conjunction with inherited resources
 gem 'dynamic_form',:git => 'git://github.com/rails/dynamic_form.git'
 
 run 'bundle install'
