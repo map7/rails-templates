@@ -1,3 +1,24 @@
+# Useful variables
+# @app_name
+# @app_path
+
+# Fix for Rake 0.9.x
+inject_into_file 'Rakefile', :before => "#{@app_name.capitalize}::Application.load_tasks" do
+  <<-eos
+# Fix for Rake 0.9.x
+module ::#{@app_name.capitalize}
+  class Application
+    include Rake::DSL
+  end
+end
+ 
+module ::RakeFileUtils
+  extend Rake::FileUtilsExt
+end
+
+  eos
+end
+
 # JS
 gem 'jquery-rails'
 
