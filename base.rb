@@ -26,7 +26,8 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'hamlify'
 gem 'sass'
-gem 'will_paginate', '~> 3.0.pre2'
+gem 'kaminari' # Better than will_paginate (Cleaner, simplier, more options)
+generate 'kaminari:config'
 gem 'nifty-generators'
 gem 'simple-navigation'
 
