@@ -3,10 +3,11 @@
 # @app_path
 
 # Fix for Rake 0.9.x
-inject_into_file 'Rakefile', :before => "#{@app_name.capitalize}::Application.load_tasks" do
+inject_into_file 'Rakefile', :after => "require 'rake'" do
   <<-eos
+
 # Fix for Rake 0.9.x
-module ::#{@app_name.capitalize}
+module ::#{@app_name.classify}
   class Application
     include Rake::DSL
   end
@@ -15,7 +16,6 @@ end
 module ::RakeFileUtils
   extend Rake::FileUtilsExt
 end
-
   eos
 end
 
@@ -36,14 +36,14 @@ gem 'ruby-debug19'
 
 # Testing gems
 gem 'rspec-rails', :group => ["development", "test"]
-gem 'capybara', :group => ["development", "test"]
+gem 'capybara', :group => ["development", "test"] # Used instead of webrat
+#gem 'webrat', :group => "test"                   # Testing with JS
 gem 'database_cleaner', :group => ["development", "test"]
 gem 'cucumber-rails', :group => ["development", "test"]
 gem 'pickle', :group => ["development", "test"]
 gem 'spork', :group => "test"
 gem 'launchy', :group => "test"    # So you can do Then show me the page
-gem 'webrat', :group => "test"     # Testing with JS
-
+gem 'simplecov'     # Use instead of rcov
 
 gem 'machinist', '>= 2.0.0.beta1'
 gem 'faker'
@@ -60,7 +60,7 @@ if yes?("Would you like to install Devise?")
   
   generate 'devise:install'
 
-  model_name = ask("What would you like the user model to be called?")
+  model_name = ask("What would you like the user model to be called? (Default: User)")
   model_name = "user" if model_name.blank?
   generate 'devise', model_name
   
