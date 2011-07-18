@@ -36,7 +36,9 @@ gem 'ruby-debug19'
 
 # Testing gems
 gem 'rspec-rails', :group => ["development", "test"]
-gem 'capybara', :group => ["development", "test"] # Used instead of webrat
+gem 'capybara', 
+  :git => "git://github.com/jnicklas/capybara.git",
+  :group => ["development", "test"] # Used instead of webrat
 #gem 'webrat', :group => "test"                   # Testing with JS
 gem 'database_cleaner', :group => ["development", "test"]
 gem 'cucumber-rails', :group => ["development", "test"]
@@ -52,7 +54,7 @@ gem 'faker'
 gem "prawn"
 
 # Devise
-if yes?("Would you like to install Devise?")
+if yes?("Would you like to install Devise?(yN)")
   gem 'devise'
   gem 'hpricot'
   gem 'ruby_parser'
@@ -87,7 +89,7 @@ generate 'navigation_config'
 
 # Generate testing tools
 generate 'rspec:install'
-generate 'cucumber:install'
+generate 'cucumber:install --capybara'
 generate 'pickle'
 
 # Machinist install
@@ -103,6 +105,13 @@ inject_into_file 'config/application.rb', :after => "config.filter_parameters +=
     end
   eos
 end
+create_file 'features/support/machinist.rb' do
+  <<-eos
+require 'machinist/active_record'
+require File.join(File.dirname(__FILE__), '..', '..', 'spec', 'support', 'blueprints.rb')
+  eos
+end
+
 
 # jQuery install
 remove_file 'public/javascripts/rails.js'
@@ -125,7 +134,7 @@ generate :controller, "home index"
 route "root :to => 'home#index'"
 git :rm => "public/index.html"
 
-if yes?("Would you like me to run db create/migrate now?")
+if yes?("Would you like me to run db create/migrate now?(yN)")
   rake 'db:create'
   rake 'db:migrate'
   rake 'db:test:prepare'
