@@ -27,7 +27,6 @@ gem 'haml-rails'
 gem 'hamlify'
 gem 'sass'
 gem 'kaminari' # Better than will_paginate (Cleaner, simplier, more options)
-generate 'kaminari:config'
 gem 'nifty-generators'
 gem 'simple-navigation'
 
@@ -59,6 +58,7 @@ if yes?("Would you like to install Devise?(yN)")
   gem 'hpricot'
   gem 'ruby_parser'
   gem 'cancan'
+  run 'bundle install'
   
   generate 'devise:install'
 
@@ -76,6 +76,9 @@ gem 'has_scope' # used in conjunction with inherited resources
 gem 'dynamic_form',:git => 'git://github.com/rails/dynamic_form.git'
 
 run 'bundle install'
+
+# Generate
+generate 'kaminari:config'
 
 # Generate Nice layout using nifty-generator and convert sass to scss.
 generate 'nifty:layout --haml'
