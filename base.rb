@@ -49,6 +49,10 @@ gem 'simplecov'     # Use instead of rcov
 gem 'machinist', '>= 2.0.0.beta1'
 gem 'faker'
 
+gem 'guard-rspec'        # Run rspec when files change.
+gem 'rb-inotify'         # inotify support
+gem 'libnotify'        # Notifications
+
 # PDF writer (Used for cucumber reports at the moment).
 gem "prawn"
 
@@ -76,6 +80,9 @@ gem 'has_scope' # used in conjunction with inherited resources
 gem 'dynamic_form',:git => 'git://github.com/rails/dynamic_form.git'
 
 run 'bundle install'
+
+# Generate guard config
+run "guard init rspec"
 
 # Generate
 generate 'kaminari:config'
