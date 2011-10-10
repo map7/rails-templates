@@ -1,0 +1,101 @@
+source 'http://rubygems.org'
+
+gem 'rails', '3.1.0'
+
+# Bundle edge Rails instead:
+# gem 'rails',     :git => 'git://github.com/rails/rails.git'
+
+# gem 'sqlite3'
+gem 'pg'
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails', "  ~> 3.1.0"
+  gem 'coffee-rails', "~> 3.1.0"
+  gem 'uglifier'
+end
+
+gem 'jquery-rails'
+
+# Use unicorn as the web server
+# gem 'unicorn'
+
+# Deploy with Capistrano
+gem 'capistrano'
+
+# To use debugger
+gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'irbtools', :require => 'irbtools/configure'
+
+# Controller
+gem 'inherited_resources', :git => 'https://github.com/josevalim/inherited_resources.git'
+gem 'has_scope' # used in conjunction with inherited resources
+
+# View gems
+gem 'haml-rails'
+gem 'hamlify'
+gem 'sass'
+gem 'kaminari' # Better than will_paginate (Cleaner, simplier, more options)
+gem 'nifty-generators'
+gem 'simple-navigation'
+gem 'chronic'    # convert date/time from human language.
+
+# Error handling
+gem 'dynamic_form',:git => 'git://github.com/rails/dynamic_form.git'
+
+# PDF writer (Used for cucumber reports at the moment).
+# gem 'prawn'
+
+# Required for production
+gem 'escape_utils'     # Used to fix a warning with cucumber, also has an initializer
+gem 'uglifier'
+gem 'therubyracer'
+
+
+
+group :development, :test do
+  # Pretty printed test output
+  gem 'turn', :require => false
+  gem 'spork'
+  gem 'launchy'	      # So you can do Then show me the page
+end
+  
+group :development, :test do
+
+  # Rspec
+  gem 'rspec-rails'
+  gem 'shoulda-matchers' # Makies validations for simple stuff easy
+  gem 'rspec-core', '>= 2.6.4'
+
+  # Cucumber  
+  gem 'cucumber-rails'
+  gem 'capybara', :git => "git://github.com/jnicklas/capybara.git"
+  gem 'database_cleaner'
+  gem 'pickle'
+
+  # Test coverage
+  gem 'simplecov'     # Use instead of rcov
+
+  # fixtures
+  gem 'machinist', '>= 2.0.0.beta1'
+  gem 'faker'
+
+  # Helpers
+  gem 'timecop'	     # Freeze time good for overriding Time.now
+
+  # Test notification
+  gem 'guard-rspec'   # Run rspec when files change.
+  gem 'guard-bundler'      # Run bundler when adding something to Gemfile.
+  gem 'guard-cucumber'     # Run cucumber features
+  gem 'guard-livereload'   # Reload browser on changes, requires: livereload extension.
+  gem 'rb-inotify'    # inotify support
+  gem 'libnotify'     # Notifications
+
+  gem 'spork'
+  gem 'launchy'		# Then show me the page, opens a web browser at that point
+  gem 'webrat', ">= 0.7.2"
+  gem 'pickle'		# Add a lot of useful steps.
+
+  gem 'parallel_tests'
+end
