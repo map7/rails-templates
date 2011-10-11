@@ -15,7 +15,7 @@ role :db,  "your primary db-server here", :primary => true # This is where Rails
 # role :db,  "your slave db-server here"
 
 # Deployment options
-set :deploy_to, "<remote directory>" # EG: "/var/www/pubsol"
+set :deploy_to, "<remote directory>" # EG: "/srv/pubsol"
 set :deploy_via, :copy # This way we don't need port forwarding.
 
 # Remote user info
