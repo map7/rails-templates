@@ -69,6 +69,7 @@ namespace :bundler do
   end
 end
 
+before "deploy:assets:precompile", "bundler:install"
 after "deploy:rollback:revision", "bundler:install"
 after "deploy:update_code", "bundler:bundle_new_release"
 
@@ -81,9 +82,37 @@ after "deploy:update_code", "bundler:bundle_new_release"
    end
  end
 
+
+namespace :deploy do
+  task :cold do       # Overriding the default deploy:cold
+    update
+    load_schema       # My own step, replacing migrations.
+    start
+  end
+
+  task :load_schema, :roles => :app do
+    run "cd \#\{current_path}; RAILS_ENV=production rake db:create"
+    run "cd \#\{current_path}; RAILS_ENV=production rake db:schema:load"
+  end
+end
+
 eos
 end
 
-run 'capify .'
+create_file 'Capfile' do 
+  <<-eos
+# load 'deploy' if respond_to?(:namespace) # cap2 differentiator
+
+# Uncomment if you are using Rails' asset pipeline
+load 'deploy/assets'
+
+Dir['vendor/gems/*/recipes/*.rb','vendor/plugins/*/recipes/*.rb'].each { |plugin| load(plugin) }
+
+load 'config/deploy' # remove this line to skip loading any of the default tasks%    
+eos
+end
+
+# No longer have to run this
+# run 'capify .'
 
 commit "Setup capistrano"
