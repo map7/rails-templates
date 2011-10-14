@@ -189,4 +189,11 @@ say <<-eos
   Run seed (Run last after everything is setup ie: sphinx search)
   - cap deploy:seed
 
+  Sphinx notes:
+  -----------------------------------------------------------------------------------
+  Uncomment the sphinx lines in deploy.rb
+
+  Sphinx, you may have to do a standard cap deploy
+  - cap deploy
+
 eos
