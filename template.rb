@@ -186,4 +186,7 @@ say <<-eos
   - cap deploy:setup
   - cap deploy:cold
 
+  Run seed (Run last after everything is setup ie: sphinx search)
+  - cap deploy:seed
+
 eos

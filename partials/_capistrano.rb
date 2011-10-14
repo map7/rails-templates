@@ -84,6 +84,12 @@ after "deploy:update_code", "bundler:bundle_new_release"
 
 
 namespace :deploy do
+  desc "Seed DB defaults into production server."
+  task :seed do
+    run "cd \#\{current_path}; RAILS_ENV=production rake db:seed"    
+  end
+  
+  desc "Deploy and load the DB from the schema file."
   task :cold do       # Overriding the default deploy:cold
     update
     load_schema       # My own step, replacing migrations.
