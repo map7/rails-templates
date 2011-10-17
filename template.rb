@@ -178,9 +178,7 @@ say <<-eos
   Deploy notes:
   -----------------------------------------------------------------------------------
   - Check that my database.yml settings are the same as the dbuser & dbpass in chef.
-
-  - Edit the /etc/apache2/sites-enabled/rails_project on your server
-  - sudo service apache2 restart
+  - Check the deploy.rb file
 
   First time deploy
   - cap deploy:setup
@@ -189,11 +187,17 @@ say <<-eos
   Run seed (Run last after everything is setup ie: sphinx search)
   - cap deploy:seed
 
+  Edit config on server
+  - Edit the /etc/apache2/sites-enabled/rails_project on your server
+  - sudo service apache2 restart
+
   Sphinx notes:
   -----------------------------------------------------------------------------------
   Uncomment the sphinx lines in deploy.rb
 
   Sphinx, you may have to do a standard cap deploy
   - cap deploy
+
+
 
 eos
