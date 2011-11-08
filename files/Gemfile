@@ -27,6 +27,7 @@ gem 'capistrano'
 # To use debugger
 gem 'ruby-debug19', :require => 'ruby-debug'
 gem 'irbtools', :require => 'irbtools/configure'
+gem 'looksee', :git => "https://github.com/oggy/looksee"
 
 # Controller
 gem 'inherited_resources', :git => 'https://github.com/josevalim/inherited_resources.git'

@@ -198,6 +198,27 @@ say <<-eos
   Sphinx, you may have to do a standard cap deploy
   - cap deploy
 
+  Heroku deploy
+  -----------------------------------------------------------------------------------
 
+  - Add heroku to Gemfile & bundle install
+  - Create heroku stack
+  % heroku create --stack cedar
+
+  - Config your project to use postgresql & commit change
+  : gem 'pg'
+  : group :development, :test do
+  :         gem 'sqlite3'
+  : end
+
+
+  Now deploy your app to heroku
+  : % git push heroku master 
+
+  Run db:migrate on heroku server
+  : % heroku run rake db:migrate
+
+  Restart server
+  : % heroku restart
 
 eos
