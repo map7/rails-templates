@@ -5,7 +5,6 @@ gem 'rails', '3.1.1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'pg'
 
 # Gems used only for assets and not required
@@ -23,11 +22,6 @@ gem 'jquery-rails'
 
 # Deploy with Capistrano
 gem 'capistrano'
-
-# To use debugger
-gem 'ruby-debug19', :require => 'ruby-debug'
-gem 'irbtools', :require => 'irbtools/configure'
-gem 'looksee', :git => "https://github.com/oggy/looksee"
 
 # Controller
 gem 'inherited_resources', :git => 'https://github.com/josevalim/inherited_resources.git'
@@ -53,16 +47,17 @@ gem 'escape_utils'     # Used to fix a warning with cucumber, also has an initia
 gem 'uglifier'
 gem 'therubyracer'
 
-
-
 group :development, :test do
+  # To use debugger
+  gem 'sqlite3'
+  gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'irbtools', :require => 'irbtools/configure'
+  gem 'looksee', :git => "https://github.com/oggy/looksee"
+
   # Pretty printed test output
   gem 'turn', :require => false
   gem 'spork'
   gem 'launchy'	      # So you can do Then show me the page
-end
-  
-group :development, :test do
 
   # Rspec
   gem 'rspec-rails'
